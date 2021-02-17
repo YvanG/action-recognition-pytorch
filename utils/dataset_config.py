@@ -26,7 +26,7 @@ DATASET_CONFIG = {
         'test_list_name': 'test.txt',
         'filename_seperator': ";",
         'image_tmpl': '{:05d}.jpg',
-        'filter_video': 30
+        'filter_video': 0
     },
     'mini_kinetics400': {
         'num_classes': 200,
@@ -52,6 +52,15 @@ DATASET_CONFIG = {
         'filename_seperator': " ",
         'image_tmpl': '{:05d}.jpg',
         'filter_video': 0
+    },
+    'chalearn': {
+        'num_classes': 226,
+        'train_list_name': 'train.txt',
+        'val_list_name': 'val.txt',
+        'test_list_name': 'test.txt',
+        'filename_seperator': ";",
+        'image_tmpl': 'frame_{:03d}.jpg',
+        'filter_video': 15
     },
 }
 

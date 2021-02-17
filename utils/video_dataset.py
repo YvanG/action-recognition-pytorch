@@ -286,11 +286,11 @@ class VideoDataSet(data.Dataset):
                 images.extend(seg_imgs)
 
         images = self.transform(images)
-        if self.test_mode:
-            # in test mode, return the video id as label
-            label = int(record.video_id)
-        else:
-            label = int(record.label)
+        # if self.test_mode:
+        #     # in test mode, return the video id as label
+        #     label = int(record.video_id)
+        # else:
+        label = int(record.label)
 
         # re-order data to targeted format.
         return images, label

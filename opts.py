@@ -99,6 +99,7 @@ def arg_parser():
                         help='frequency to print the log during the training')
     parser.add_argument('--show_model', action='store_true',
                         help='show model and then exit intermediately')
+    parser.add_argument('--finetunning', default=False, help='finetunning pretrained model on different dataset')
 
     # for testing and validation
     parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',

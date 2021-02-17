@@ -104,6 +104,9 @@ def main_worker(gpu, ngpus_per_node, args):
         if args.rank == 0:
             print("=> using pre-trained model '{}'".format(arch_name))
         checkpoint = torch.load(args.pretrained, map_location='cpu')
+        if args.finetunning:
+            del checkpoint['state_dict']['fc.weight']
+            del checkpoint['state_dict']['fc.bias']
         model.load_state_dict(checkpoint['state_dict'], strict=False)
         del checkpoint  # dereference seems crucial
         torch.cuda.empty_cache()

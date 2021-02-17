@@ -118,8 +118,8 @@ def train(data_loader, model, criterion, optimizer, epoch, display=100,
     top5 = AverageMeter()
 
     # set different random see every epoch
-    if dist.is_initialized():
-        data_loader.sampler.set_epoch(epoch)
+    # if dist.is_initialized():
+    #     data_loader.sampler.set_epoch(epoch)
 
     # switch to train mode
     model.train()
@@ -140,12 +140,12 @@ def train(data_loader, model, criterion, optimizer, epoch, display=100,
             # measure accuracy and record loss
             prec1, prec5 = accuracy(output, target)
 
-            if dist.is_initialized():
-                world_size = dist.get_world_size()
-                dist.all_reduce(prec1)
-                dist.all_reduce(prec5)
-                prec1 /= world_size
-                prec5 /= world_size
+            # if dist.is_initialized():
+            #     world_size = dist.get_world_size()
+            #     dist.all_reduce(prec1)
+            #     dist.all_reduce(prec5)
+            #     prec1 /= world_size
+            #     prec5 /= world_size
 
             losses.update(loss.item(), images.size(0))
             top1.update(prec1[0], images.size(0))
@@ -202,12 +202,12 @@ def validate(data_loader, model, criterion, gpu_id=None):
 
             # measure accuracy and record loss
             prec1, prec5 = accuracy(output, target)
-            if dist.is_initialized():
-                world_size = dist.get_world_size()
-                dist.all_reduce(prec1)
-                dist.all_reduce(prec5)
-                prec1 /= world_size
-                prec5 /= world_size
+            # if dist.is_initialized():
+            #     world_size = dist.get_world_size()
+            #     dist.all_reduce(prec1)
+            #     dist.all_reduce(prec5)
+            #     prec1 /= world_size
+            #     prec5 /= world_size
             losses.update(loss.item(), images.size(0))
             top1.update(prec1[0], images.size(0))
             top5.update(prec5[0], images.size(0))
