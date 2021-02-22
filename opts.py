@@ -40,9 +40,11 @@ def arg_parser():
                         metavar='N', help='mini-batch size (default: 256)')
     parser.add_argument('--lr', '--learning-rate', default=0.01, type=float,
                         metavar='LR', help='initial learning rate')
+    parser.add_argument('--optimizer', default='SGD', type=str, help='weight optimizer',
+                        choices=['SGD', 'Adam', 'AdamW'])
     parser.add_argument('--lr_scheduler', default='cosine', type=str,
                         help='learning rate scheduler',
-                        choices=['step', 'multisteps', 'cosine', 'plateau'])
+                        choices=['step', 'multisteps', 'cosine', 'plateau', 'restart'])
     parser.add_argument('--lr_steps', default=[15, 30, 45], type=float, nargs="+",
                         metavar='LRSteps', help='[step]: use a single value: the periodto decay '
                                                 'learning rate by 10. '
@@ -99,7 +101,7 @@ def arg_parser():
                         help='frequency to print the log during the training')
     parser.add_argument('--show_model', action='store_true',
                         help='show model and then exit intermediately')
-    parser.add_argument('--finetunning', default=False, help='finetunning pretrained model on different dataset')
+    parser.add_argument('--finetuning', default=False, help='finetuning pretrained model on different dataset')
 
     # for testing and validation
     parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',

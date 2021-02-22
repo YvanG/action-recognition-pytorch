@@ -104,7 +104,7 @@ def main_worker(gpu, ngpus_per_node, args):
         if args.rank == 0:
             print("=> using pre-trained model '{}'".format(arch_name))
         checkpoint = torch.load(args.pretrained, map_location='cpu')
-        if args.finetunning:
+        if args.finetuning:
             del checkpoint['state_dict']['fc.weight']
             del checkpoint['state_dict']['fc.bias']
         model.load_state_dict(checkpoint['state_dict'], strict=False)
@@ -211,11 +211,16 @@ def main_worker(gpu, ngpus_per_node, args):
     train_loader = build_dataflow(train_dataset, is_train=True, batch_size=args.batch_size,
                                   workers=args.workers, is_distributed=args.distributed)
 
-    sgd_polices = model.parameters()
-    optimizer = torch.optim.SGD(sgd_polices, args.lr,
-                                momentum=args.momentum,
-                                weight_decay=args.weight_decay,
-                                nesterov=args.nesterov)
+    if args.optimizer == 'SGD':
+        optimizer = torch.optim.SGD(model.parameters(), args.lr,
+                                    momentum=args.momentum,
+                                    weight_decay=args.weight_decay,
+                                    nesterov=args.nesterov)
+    elif args.optimizer =='Adam':
+        optimizer = torch.optim.Adam(model.parameters(), args.lr,
+                                     weight_decay=args.weight_decay)
+    elif args.optimizer == 'AdamW':
+        optimizer = torch.optim.AdamW(model.parameters(), args.lr)
 
     if args.lr_scheduler == 'step':
         scheduler = lr_scheduler.StepLR(optimizer, args.lr_steps[0], gamma=0.1)
@@ -225,6 +230,8 @@ def main_worker(gpu, ngpus_per_node, args):
         scheduler = lr_scheduler.CosineAnnealingLR(optimizer, args.epochs, eta_min=0)
     elif args.lr_scheduler == 'plateau':
         scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, 'min', verbose=True)
+    elif args.lr_scheduler == 'restart':
+        scheduler = lr_scheduler.CosineAnnealingWarmRestarts(optimizer, T_0=10, T_mult=1, eta_min=1e-6)
 
     best_top1 = 0.0
     # optionally resume from a checkpoint

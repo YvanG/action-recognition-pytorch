@@ -52,7 +52,8 @@ def main():
 
     args.num_classes = num_classes
     if args.gpu:
-        os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
+        # os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
+        torch.cuda.set_device(args.gpu)
 
     if args.modality == 'rgb':
         args.input_channels = 3
