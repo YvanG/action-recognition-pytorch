@@ -23,6 +23,8 @@ from utils.video_dataset import VideoDataSet
 from utils.dataset_config import get_dataset_config
 from opts import arg_parser
 
+import h5py
+
 
 def main():
     global args
@@ -154,6 +156,11 @@ def main_worker(gpu, ngpus_per_node, args):
     # Data loading code
     val_list = os.path.join(args.datadir, val_list_name)
 
+    if args.keyframes:
+        h5_keyframes = h5py.File(args.keyframes, 'r')
+    else:
+        h5_keyframes=None
+
     val_augmentor = get_augmentor(False, args.input_size, scale_range=args.scale_range, mean=mean,
                                   std=std, disable_scaleup=args.disable_scaleup,
                                   threed_data=args.threed_data,
@@ -165,7 +172,7 @@ def main_worker(gpu, ngpus_per_node, args):
                                modality=args.modality, image_tmpl=image_tmpl,
                                dense_sampling=args.dense_sampling,
                                transform=val_augmentor, is_train=False, test_mode=False,
-                               seperator=filename_seperator, filter_video=filter_video)
+                               seperator=filename_seperator, filter_video=filter_video, keyframes=h5_keyframes)
 
     val_loader = build_dataflow(val_dataset, is_train=False, batch_size=args.batch_size,
                                 workers=args.workers,
@@ -206,7 +213,7 @@ def main_worker(gpu, ngpus_per_node, args):
                                  modality=args.modality, image_tmpl=image_tmpl,
                                  dense_sampling=args.dense_sampling,
                                  transform=train_augmentor, is_train=True, test_mode=False,
-                                 seperator=filename_seperator, filter_video=filter_video)
+                                 seperator=filename_seperator, filter_video=filter_video, keyframes=h5_keyframes)
 
     train_loader = build_dataflow(train_dataset, is_train=True, batch_size=args.batch_size,
                                   workers=args.workers, is_distributed=args.distributed)
@@ -218,9 +225,10 @@ def main_worker(gpu, ngpus_per_node, args):
                                     nesterov=args.nesterov)
     elif args.optimizer =='Adam':
         optimizer = torch.optim.Adam(model.parameters(), args.lr,
-                                     weight_decay=args.weight_decay)
+                                     weight_decay=args.weight_decay,
+                                     amsgrad=False)
     elif args.optimizer == 'AdamW':
-        optimizer = torch.optim.AdamW(model.parameters(), args.lr)
+        optimizer = torch.optim.AdamW(model.parameters(), args.lr, amsgrad=False)
 
     if args.lr_scheduler == 'step':
         scheduler = lr_scheduler.StepLR(optimizer, args.lr_steps[0], gamma=0.1)

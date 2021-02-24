@@ -50,7 +50,7 @@ class VideoDataSet(data.Dataset):
     def __init__(self, root_path, list_file, num_groups=64, frames_per_group=4, sample_offset=0, num_clips=1,
                  modality='rgb', dense_sampling=False, fixed_offset=True,
                  image_tmpl='{:05d}.jpg', transform=None, is_train=True, test_mode=False, seperator=' ',
-                 filter_video=0, num_classes=None):
+                 filter_video=0, num_classes=None, keyframes=None):
         """
 
         Argments have different meaning when dense_sampling is True:
@@ -92,6 +92,7 @@ class VideoDataSet(data.Dataset):
         self.test_mode = test_mode
         self.seperator = seperator
         self.filter_video = filter_video
+        self.keyframes = keyframes
 
         if self.modality == 'flow':
             self.num_consecutive_frames = 5
@@ -274,9 +275,21 @@ class VideoDataSet(data.Dataset):
         record = self.video_list[index]
         # check this is a legit video folder
         if self.is_train:
-            indices = self._sample_indices(record)
+            if self.keyframes:
+                sample = record.path.split('\\')[-1]
+                signer = record.path.split('\\')[-2]
+                h5_key = signer + '_' + sample + '_color'
+                indices = self.keyframes[h5_key].value
+            else:
+                indices = self._sample_indices(record)
         else:
-            indices = self._get_val_indices(record)
+            if self.keyframes:
+                sample = record.path.split('\\')[-1]
+                signer = record.path.split('\\')[-2]
+                h5_key = signer + '_' + sample + '_color'
+                indices = self.keyframes[h5_key].value
+            else:
+                indices = self._get_val_indices(record)
 
         images = []
         for seg_ind in indices:
