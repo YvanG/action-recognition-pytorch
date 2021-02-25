@@ -279,7 +279,7 @@ class VideoDataSet(data.Dataset):
                 sample = record.path.split('\\')[-1]
                 signer = record.path.split('\\')[-2]
                 h5_key = signer + '_' + sample + '_color'
-                indices = self.keyframes[h5_key].value
+                indices = self.keyframes[h5_key].value+1
             else:
                 indices = self._sample_indices(record)
         else:
@@ -287,7 +287,7 @@ class VideoDataSet(data.Dataset):
                 sample = record.path.split('\\')[-1]
                 signer = record.path.split('\\')[-2]
                 h5_key = signer + '_' + sample + '_color'
-                indices = self.keyframes[h5_key].value
+                indices = self.keyframes[h5_key].value+1
             else:
                 indices = self._get_val_indices(record)
 
