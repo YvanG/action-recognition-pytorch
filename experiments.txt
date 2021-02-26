@@ -8,13 +8,14 @@ w3 = resnet50 - Something-Something-V2
 3 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=restart, best_acc= 91.530, last_acc= 91.430
 4 - resnet50, groups=16, Adam, lr = 3e-4,  scheduler=restart, best_acc= x, last_acc=x - NOT TRAINING!
 5 - resnet50, groups=16, Adam, lr = 3e-4,  scheduler=cosine, best_acc= 28.949, last_acc= 28.949
-6 - resnet50, groups=16, AdamW, lr = 3e-4,  scheduler=cosine, best_acc= x, last_acc=x
-7 - resnet50, groups=16, AdamW, lr = 3e-4,  scheduler=restart, best_acc= x, last_acc=x
+6 - resnet50, groups=16, AdamW, lr = 3e-4,  scheduler=cosine, best_acc= 76.931, last_acc= 76.482
+7 - resnet50, groups=16, AdamW, lr = 3e-4,  scheduler=restart, best_acc=  83.657, last_acc=  83.657
 8 - resnet101, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= x, last_acc=x
-9 - resnet50SSV2, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= x, last_acc=x
+9 - resnet50SSV2, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= 90.533, last_acc= 89.935
 
 4b - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, epochs = 80, best_acc= x, last_acc=x
 
-10 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 8, best_acc= x, last_acc=x
+10 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 8, best_acc= 83.607, last_acc= 83.209
 11 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 12, best_acc= x, last_acc=x
 12 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 16, best_acc= x, last_acc=x
+13  -resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, masked background, best_acc= x, last_acc=x
