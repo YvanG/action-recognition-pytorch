@@ -9,6 +9,7 @@ import torch.utils.data
 import torch.utils.data.distributed
 import torchvision.transforms as transforms
 from tqdm import tqdm
+import h5py
 
 from models import build_model
 from utils.utils import build_dataflow, AverageMeter, accuracy
@@ -127,12 +128,17 @@ def main():
     print("Number of crops: {}".format(args.num_crops))
     print("Number of clips: {}".format(args.num_clips))
 
+    if args.keyframes:
+        h5_keyframes = h5py.File(args.keyframes, 'r')
+    else:
+        h5_keyframes=None
+
     val_dataset = VideoDataSet(args.datadir, data_list, args.groups, args.frames_per_group,
                                  num_clips=args.num_clips, modality=args.modality,
                                  image_tmpl=image_tmpl, dense_sampling=args.dense_sampling,
                                  fixed_offset=not args.random_sampling,
                                  transform=augmentor, is_train=False, test_mode=not args.evaluate,
-                                 seperator=filename_seperator, filter_video=filter_video)
+                                 seperator=filename_seperator, filter_video=filter_video, keyframes=h5_keyframes)
 
     data_loader = build_dataflow(val_dataset, is_train=False, batch_size=args.batch_size,
                                  workers=args.workers)

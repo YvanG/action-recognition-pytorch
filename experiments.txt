@@ -3,19 +3,19 @@ w2 = resnet101 - Kinetics400
 w3 = resnet50 - Something-Something-V2
 
 
-1 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= 92.975, last_acc= 92.726
-2 - resnet50, groups=32, SGD, lr = 0.01,  scheduler=cosine, best_acc= x, last_acc=x
-3 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=restart, best_acc= 91.530, last_acc= 91.430
-4 - resnet50, groups=16, Adam, lr = 3e-4,  scheduler=restart, best_acc= x, last_acc=x - NOT TRAINING!
-5 - resnet50, groups=16, Adam, lr = 3e-4,  scheduler=cosine, best_acc= 28.949, last_acc= 28.949
-6 - resnet50, groups=16, AdamW, lr = 3e-4,  scheduler=cosine, best_acc= 76.931, last_acc= 76.482
-7 - resnet50, groups=16, AdamW, lr = 3e-4,  scheduler=restart, best_acc=  83.657, last_acc=  83.657
-8 - resnet101, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= x, last_acc=x
-9 - resnet50SSV2, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= 90.533, last_acc= 89.935
+1 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= 92.975, challenge= 91.20
+2 - resnet50, groups=32, SGD, lr = 0.01,  scheduler=cosine, best_acc= x, challenge= x
+3 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=restart, best_acc= 91.530, challenge= 90.72
+4 - resnet50, groups=16, Adam, lr = 3e-4,  scheduler=restart, best_acc= x, challenge=x - NOT TRAINING!
+5 - resnet50, groups=16, Adam, lr = 3e-4,  scheduler=cosine, best_acc= 28.949, challenge= x
+6 - resnet50, groups=16, AdamW, lr = 3e-4,  scheduler=cosine, best_acc= 76.931, challenge= 78.81
+7 - resnet50, groups=16, AdamW, lr = 3e-4,  scheduler=restart, best_acc=  83.657, challenge=  x
+8 - resnet101, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= 91.779, challenge=x
+9 - resnet50SSV2, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= 90.533, challenge= x
 
-4b - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, epochs = 80, best_acc= x, last_acc=x
+4b - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, epochs = 80, best_acc= 92.227, challenge=91.58
 
-10 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 8, best_acc= 83.607, last_acc= 83.209
-11 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 12, best_acc= x, last_acc=x
-12 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 16, best_acc= x, last_acc=x
-13  -resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, masked background, best_acc= x, last_acc=x
+10 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 8, best_acc= 83.607, challenge= x
+11 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 12, best_acc=  91.978, challenge=  90.11
+12 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 16, best_acc= 91.978, challenge= 90.79
+13  -resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, masked background, best_acc= 92.277, challenge=x
