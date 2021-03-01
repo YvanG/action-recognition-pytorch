@@ -16,6 +16,6 @@ w3 = resnet50 - Something-Something-V2
 4b - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, epochs = 80, best_acc= 92.227, challenge=91.58
 
 10 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 8, best_acc= 83.607, challenge= x
-11 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 12, best_acc=  91.978, challenge=  90.11
+11 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 12, best_acc=  91.978, challenge= 90.11
 12 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 16, best_acc= 91.978, challenge= 90.79
-13  -resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, masked background, best_acc= 92.277, challenge=x
+13  -resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, masked background, best_acc= 92.277, challenge= 90.45
