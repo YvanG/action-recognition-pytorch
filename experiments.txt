@@ -4,7 +4,7 @@ w3 = resnet50 - Something-Something-V2
 
 
 1 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= 92.975, challenge= 91.20
-2 - resnet50, groups=32, SGD, lr = 0.01,  scheduler=cosine, best_acc= x, challenge= x
+2 - resnet50, groups=32, SGD, lr = 0.01,  scheduler=cosine, best_acc= 91.480, challenge= x
 3 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=restart, best_acc= 91.530, challenge= 90.72
 4 - resnet50, groups=16, Adam, lr = 3e-4,  scheduler=restart, best_acc= x, challenge=x - NOT TRAINING!
 5 - resnet50, groups=16, Adam, lr = 3e-4,  scheduler=cosine, best_acc= 28.949, challenge= x
