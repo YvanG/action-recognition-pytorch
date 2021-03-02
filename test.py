@@ -129,9 +129,13 @@ def main():
     print("Number of clips: {}".format(args.num_clips))
 
     if args.keyframes:
-        h5_keyframes = h5py.File(args.keyframes, 'r')
+        h5_keyframes_file = h5py.File(args.keyframes, 'r')
+        h5_keyframes = {}
+        for sample in h5_keyframes_file:
+            h5_keyframes[sample] = h5_keyframes_file[sample][:]
+
     else:
-        h5_keyframes=None
+        h5_keyframes = None
 
     val_dataset = VideoDataSet(args.datadir, data_list, args.groups, args.frames_per_group,
                                  num_clips=args.num_clips, modality=args.modality,

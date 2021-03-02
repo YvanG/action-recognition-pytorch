@@ -17,7 +17,7 @@ from torch.optim import lr_scheduler
 from torch.utils.tensorboard import SummaryWriter
 
 from models import build_model
-from utils.utils import (train, validate, build_dataflow, get_augmentor,
+from utils.utils_parallel import (train, validate, build_dataflow, get_augmentor,
                          save_checkpoint)
 from utils.video_dataset import VideoDataSet
 from utils.dataset_config import get_dataset_config

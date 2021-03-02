@@ -235,7 +235,8 @@ class VideoDataSet(data.Dataset):
                             curr_sample_offset = tick / 2.0 - 1e-4
                         elif curr_sample_offset < -tick / 2.0:
                             curr_sample_offset = -tick / 2.0
-                        frame_idx = np.array([int(tick / 2.0 + curr_sample_offset + tick * x) for x in range(self.num_groups)])
+                        frame_idx = np.array(
+                            [int(tick / 2.0 + curr_sample_offset + tick * x) for x in range(self.num_groups)])
                     else:
                         np.random.seed(sample_offset - (-self.num_clips // 2 + 1))
                         frame_idx = np.random.choice(max_frame_idx, self.num_groups)
@@ -279,7 +280,7 @@ class VideoDataSet(data.Dataset):
                 sample = record.path.split('\\')[-1]
                 signer = record.path.split('\\')[-2]
                 h5_key = signer + '_' + sample + '_color'
-                indices = self.keyframes[h5_key].value+1
+                indices = self.keyframes[h5_key] + 1
             else:
                 indices = self._sample_indices(record)
         else:
@@ -287,7 +288,7 @@ class VideoDataSet(data.Dataset):
                 sample = record.path.split('\\')[-1]
                 signer = record.path.split('\\')[-2]
                 h5_key = signer + '_' + sample + '_color'
-                indices = self.keyframes[h5_key].value+1
+                indices = self.keyframes[h5_key] + 1
             else:
                 indices = self._get_val_indices(record)
 
