@@ -111,6 +111,8 @@ def arg_parser():
                         help='[Test.py only] number of crops.')
     parser.add_argument('--num_clips', default=1, type=int,
                         help='[Test.py only] number of clips.')
+    parser.add_argument('--save_softmax', default=False, type=bool,
+                        help='Saving predicted softmax values')
 
     # for distributed learning, not supported yet
     parser.add_argument('--sync-bn', action='store_true',

@@ -18,4 +18,16 @@ w3 = resnet50 - Something-Something-V2
 10 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 8, best_acc= 83.607, challenge= x
 11 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 12, best_acc=  91.978, challenge= 90.11
 12 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 16, best_acc= 91.978, challenge= 90.79
-13  -resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, masked background, best_acc= 92.277, challenge= 90.45
+13 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, masked background, best_acc= 92.277, challenge= 90.45
+14 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 16, masked background, best_acc= 92.476, challenge= 90.29
+
+15 - resnet50, val_set = 0,2,3,4,5,9 (5403)
+16 - resnet50, val_set = 7,8,10 (6060)
+17 - resnet50, val_set = 12,13,15,17,19 (5578)
+18 - resnet50, val_set = 21,22,23,24,26,28,29 (5198)
+19 - resnet50, val_set = 31,32,33,36,37,38,40,41,42 (5903)
+
+20 - finetuning 4b
+21 - finetuning 12
+22 - finetuning 13
+23 - finetuning 14

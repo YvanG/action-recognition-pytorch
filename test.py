@@ -10,6 +10,7 @@ import torch.utils.data.distributed
 import torchvision.transforms as transforms
 from tqdm import tqdm
 import h5py
+import pandas as pd
 
 from models import build_model
 from utils.utils import build_dataflow, AverageMeter, accuracy
@@ -160,6 +161,9 @@ def main():
         logfile = open(os.path.join(log_folder, 'test_{}crops_{}clips_{}.csv'.format(
             args.num_crops, args.num_clips, args.input_size)), 'w')
 
+    if args.save_softmax:
+        softmax_list = []
+
     total_outputs = 0
     outputs = np.zeros((len(data_loader) * args.batch_size, num_classes))
     # switch to evaluate mode
@@ -181,7 +185,12 @@ def main():
                 outputs[total_outputs:total_outputs + batch_size, :] = output
             else:
                 # testing, store output to prepare csv file
+                probs = output.softmax(1)
+                probs = probs.data.cpu().numpy().copy()
                 output = output.data.cpu().numpy().copy()
+                if args.save_softmax:
+                    for p in probs:
+                        softmax_list.append(p)
                 batch_size = output.shape[0]
                 outputs[total_outputs:total_outputs + batch_size, :] = output
                 predictions = np.argsort(output, axis=1)
@@ -210,6 +219,9 @@ def main():
             flush=True, file=logfile)
 
     logfile.close()
+    if args.save_softmax:
+        df = pd.DataFrame(softmax_list)
+        df.to_csv(os.path.join(log_folder, 'softmax_values.csv'), index=False)
 
 
 if __name__ == '__main__':
