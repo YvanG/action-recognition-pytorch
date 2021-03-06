@@ -165,6 +165,11 @@ def main_worker(gpu, ngpus_per_node, args):
     else:
         h5_keyframes = None
 
+    if args.val_keyframes:
+        h5_keyframes_file = h5py.File(args.val_keyframes, 'r')
+        for sample in h5_keyframes_file:
+            h5_keyframes[sample] = h5_keyframes_file[sample][:]
+
     val_augmentor = get_augmentor(False, args.input_size, scale_range=args.scale_range, mean=mean,
                                   std=std, disable_scaleup=args.disable_scaleup,
                                   threed_data=args.threed_data,

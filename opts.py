@@ -96,6 +96,7 @@ def arg_parser():
     parser.add_argument('--std', type=float, nargs="+", metavar='STD',
                         help='[Data normalization] std, dimension should be 3 for RGB, 1 for flow')
     parser.add_argument('--keyframes', type=str, default=None, help='H5 file with keyframes')
+    parser.add_argument('--val_keyframes', type=str, default=None, help='H5 file with validation keyframes')
     # logging
     parser.add_argument('--logdir', default='', type=str, help='log path')
     parser.add_argument('--print-freq', default=100, type=int,
