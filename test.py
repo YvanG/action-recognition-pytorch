@@ -162,6 +162,7 @@ def main():
             args.num_crops, args.num_clips, args.input_size)), 'w')
 
     if args.save_softmax:
+        logits_list = []
         softmax_list = []
 
     total_outputs = 0
@@ -189,7 +190,8 @@ def main():
                 probs = probs.data.cpu().numpy().copy()
                 output = output.data.cpu().numpy().copy()
                 if args.save_softmax:
-                    for p in probs:
+                    for l,p in zip(output, probs):
+                        logits_list.append(l)
                         softmax_list.append(p)
                 batch_size = output.shape[0]
                 outputs[total_outputs:total_outputs + batch_size, :] = output
@@ -220,8 +222,10 @@ def main():
 
     logfile.close()
     if args.save_softmax:
-        df = pd.DataFrame(softmax_list)
-        df.to_csv(os.path.join(log_folder, 'softmax_values.csv'), index=False)
+        df = pd.DataFrame(logits_list)
+        df.to_csv(os.path.join(log_folder, 'logit_values.csv'), index=False)
+        df2 = pd.DataFrame(softmax_list)
+        df2.to_csv(os.path.join(log_folder, 'softmax_values.csv'), index=False)
 
 
 if __name__ == '__main__':

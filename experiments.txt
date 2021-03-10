@@ -3,7 +3,7 @@ w2 = resnet101 - Kinetics400
 w3 = resnet50 - Something-Something-V2
 
 
-1 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= 92.975, challenge= 91.20
+1 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= 92.975, challenge= 91.20 (91.29)
 2 - resnet50, groups=32, SGD, lr = 0.01,  scheduler=cosine, best_acc= 91.480, challenge= x
 3 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=restart, best_acc= 91.530, challenge= 90.72
 4 - resnet50, groups=16, Adam, lr = 3e-4,  scheduler=restart, best_acc= x, challenge=x - NOT TRAINING!
@@ -13,26 +13,28 @@ w3 = resnet50 - Something-Something-V2
 8 - resnet101, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= 91.779, challenge=x
 9 - resnet50SSV2, groups=16, SGD, lr = 0.01,  scheduler=cosine, best_acc= 90.533, challenge= x
 
-4b - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, epochs = 80, best_acc= 92.227, challenge=91.58
+4b - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, epochs = 80, best_acc= 92.227, challenge=91.58 (91.65)
 
 10 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 8, best_acc= 83.607, challenge= x
 11 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 12, best_acc=  91.978, challenge= 90.11
-12 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 16, best_acc= 91.978, challenge= 90.79
-13 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, masked background, best_acc= 92.277, challenge= 90.45
-14 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 16, masked background, best_acc= 92.476, challenge= 90.29
+12 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 16, best_acc= 91.978, challenge= 90.79 (90.74)
+13 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, masked background, best_acc= 92.277, challenge= 90.45 (90.45)
+14 - resnet50, groups=16, SGD, lr = 0.01,  scheduler=cosine, keyframe = 16, masked background, best_acc= 92.476, challenge= 90.29 (90.29)
 
-15 - resnet50, val_set = 0,2,3,4,5,9 (5403) -  best_acc = 91.67
-16 - resnet50, val_set = 7,8,10 (6060) - best_acc = 91.70
-17 - resnet50, val_set = 12,13,15,17,19 (5578)
-18 - resnet50, val_set = 21,22,23,24,26,28,29 (5198)
-19 - resnet50, val_set = 31,32,33,36,37,38,40,41,42 (5903)
+15 - resnet50, val_set = 0,2,3,4,5,9 (5403) -  best_acc = 91.67 (90.29)
+16 - resnet50, val_set = 7,8,10 (6060) - best_acc = 91.70  (91.17)
+17 - resnet50, val_set = 12,13,15,17,19 (5578) - best_acc = 84.30  (90.95)
+18 - resnet50, val_set = 21,22,23,24,26,28,29 (5198) - best_acc = 85.09  (89.93)
+19 - resnet50, val_set = 31,32,33,36,37,38,40,41,42 (5903) - best_acc = 87.65  (89.52)
 
-20 - finetuning 4b - best_acc = 92.42
-21 - finetuning 12 - best_acc = 90.99
-22 - finetuning 13 - best_acc = 91.80
-23 - finetuning 14 - best_acc = 
+20 = crop - finetuning 4b - best_acc = 92.42 (92.35)
+21 = keyframe - finetuning 12 - best_acc = 90.99 (90.90)
+22 = mask - finetuning 13 - best_acc = 91.80 (91.78)
+23 = keyframe_mask - finetuning 14 - best_acc = 90.67 (90.63)
 
-24 - 4b - 80epochs, all data
-25 - 12 - 80epochs, all data
+24 = crop_new - 4b - 80epochs, all data - best_acc = 92.92
+25 = keyframe_new - 12 - 80epochs, all data - best_acc = 91.49
 26 - 13 - 80epochs, all data
 27 - 14 - 80epochs, all data
+
+--datadir D:/Work/Challenges/Action_Recognition/data/final_mask/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained D:\Work\Challenges\Action_Recognition\results\23\model_best.pth.tar --logdir D:/Work/Challenges/Action_Recognition/logdir/ --gpu cuda:0 -b 10 --save_softmax True --workers 0 --keyframes D:\Work\Challenges\Action_Recognition\data\keyframes\test_key_frames_16.h5
