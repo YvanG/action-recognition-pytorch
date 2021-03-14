@@ -34,7 +34,7 @@ w3 = resnet50 - Something-Something-V2
 
 24 = crop_new - 4b - 80epochs, all data - best_acc = 92.92
 25 = keyframe_new - 12 - 80epochs, all data - best_acc = 91.49
-26 - 13 - 80epochs, all data
-27 - 14 - 80epochs, all data
+26 = mask_new - 13 - 80epochs, all data - best_acc = 91.87
+27 = keyframe_mask_new - 14 - 80epochs, all data - best_acc = 90.35
 
 --datadir D:/Work/Challenges/Action_Recognition/data/final_mask/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained D:\Work\Challenges\Action_Recognition\results\23\model_best.pth.tar --logdir D:/Work/Challenges/Action_Recognition/logdir/ --gpu cuda:0 -b 10 --save_softmax True --workers 0 --keyframes D:\Work\Challenges\Action_Recognition\data\keyframes\test_key_frames_16.h5

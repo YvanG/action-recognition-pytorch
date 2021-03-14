@@ -4,3 +4,4 @@ tqdm
 skvideo
 pandas
 h5py
+tensorboard
