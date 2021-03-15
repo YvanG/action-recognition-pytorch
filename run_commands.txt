@@ -1,0 +1,52 @@
+# train crop
+python train.py --datadir data/train --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained model_weights/w.pth.tar --finetuning True --gpu cuda:0 --logdir logs/crop --workers 0 --batch-size 10 --epochs 80
+
+# train keyframe
+python train.py --datadir data/train --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained model_weights/w.pth.tar --finetuning True --gpu cuda:0 --logdir logs/keyframe --workers 0 --batch-size 10 --epochs 80 --keyframes data/key_frames_16.h5 --val_keyframes data/val_key_frames_16.h5
+
+# train mask
+python train.py --datadir data/train_mask --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained model_weights/w.pth.tar --finetuning True --gpu cuda:0 --logdir logs/mask --workers 0 --batch-size 10 --epochs 80
+
+# train keyframe_mask
+python train.py --datadir data/train_mask --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained model_weights/w.pth.tar --finetuning True --gpu cuda:0 --logdir logs/keyframe_mask --workers 0 --batch-size 10 --epochs 80 --keyframes data/key_frames_16.h5 --val_keyframes data/val_key_frames_16.h5
+
+# test crop
+python test.py --datadir data/test/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\crop\model_best.pth.tar --logdir logdir/crops --gpu cuda:0 -b 10 --save_softmax True --workers 0
+
+# test keyframe
+python test.py --datadir data/test/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\keyframe\model_best.pth.tar --logdir logdir/keyframe --gpu cuda:0 -b 10 --save_softmax True --workers 0 --keyframes data\keyframes\test_key_frames_16.h5
+
+# test mask
+python test.py --datadir data/test_mask/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\mask\model_best.pth.tar --logdir logdir/mask --gpu cuda:0 -b 10 --save_softmax True --workers 0
+
+# test keyframe_mask
+python test.py --datadir data/test_mask/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\keyframe_mask\model_best.pth.tar --logdir logdir/keyframe_mask --gpu cuda:0 -b 10 --save_softmax True --workers 0 --keyframes data\keyframes\test_key_frames_16.h5
+
+
+# test crop_new
+python test.py --datadir data/test/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\crop_new\model_best.pth.tar --logdir logdir/crop_new --gpu cuda:0 -b 10 --save_softmax True --workers 0
+
+# test keyframe_new
+python test.py --datadir data/test/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\keyframe_new\model_best.pth.tar --logdir logdir/keyframe_new --gpu cuda:0 -b 10 --save_softmax True --workers 0 --keyframes data\keyframes\test_key_frames_16.h5
+
+# test mask_new
+python test.py --datadir data/test_mask/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\mask_new\model_best.pth.tar --logdir logdir/mask_new --gpu cuda:0 -b 10 --save_softmax True --workers 0
+
+# test keyframe_mask_new
+python test.py --datadir data/test_mask/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\keyframe_mask_new\model_best.pth.tar --logdir logdir/keyframe_mask_new --gpu cuda:0 -b 10 --save_softmax True --workers 0 --keyframes data\keyframes\test_key_frames_16.h5
+
+# test 1
+python test.py --datadir data/test/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\1\model_best.pth.tar --logdir logdir/1 --gpu cuda:0 -b 10 --save_softmax True --workers 0
+
+# test 2
+python test.py --datadir data/test/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\2\model_best.pth.tar --logdir logdir/2 --gpu cuda:0 -b 10 --save_softmax True --workers 0
+
+# test 3
+python test.py --datadir data/test/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\3\model_best.pth.tar --logdir logdir/3 --gpu cuda:0 -b 10 --save_softmax True --workers 0
+
+# test 4
+python test.py --datadir data/test/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\4\model_best.pth.tar --logdir logdir/4 --gpu cuda:0 -b 10 --save_softmax True --workers 0
+
+# test 5
+python test.py --datadir data/test/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\5\model_best.pth.tar --logdir logdir/5 --gpu cuda:0 -b 10 --save_softmax True --workers 0
+
