@@ -1,15 +1,3 @@
-# train crop
-python train.py --datadir data/train --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained model_weights/w.pth.tar --finetuning True --gpu cuda:0 --logdir logs/crop --workers 0 --batch-size 10 --epochs 80
-
-# train keyframe
-python train.py --datadir data/train --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained model_weights/w.pth.tar --finetuning True --gpu cuda:0 --logdir logs/keyframe --workers 0 --batch-size 10 --epochs 80 --keyframes data/key_frames_16.h5 --val_keyframes data/val_key_frames_16.h5
-
-# train mask
-python train.py --datadir data/train_mask --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained model_weights/w.pth.tar --finetuning True --gpu cuda:0 --logdir logs/mask --workers 0 --batch-size 10 --epochs 80
-
-# train keyframe_mask
-python train.py --datadir data/train_mask --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained model_weights/w.pth.tar --finetuning True --gpu cuda:0 --logdir logs/keyframe_mask --workers 0 --batch-size 10 --epochs 80 --keyframes data/key_frames_16.h5 --val_keyframes data/val_key_frames_16.h5
-
 # test crop
 python test.py --datadir data/test/ --threed_data --dataset chalearn --backbone_net i3d_resnet -d 50 --pretrained results\crop\model_best.pth.tar --logdir logdir/crops --gpu cuda:0 -b 10 --save_softmax True --workers 0
 
